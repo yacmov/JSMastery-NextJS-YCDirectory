@@ -1,36 +1,166 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project name
 
-## Getting Started
+## Table of contents
 
-First, run the development server:
+- [Purpose](#purpose)
+- [What did I learn with this project?](#what-did-i-learn-with-this-project)
+- [Used Programs](#used-programs)
+- [References](#reference)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Purpose
+
+[Back](#table-of-contents)<br>
+
+TODO:
+
+## What did I learn with this project?
+
+[Back](#table-of-contents)<br>
+
+TODO #1:
+
+## Used programs
+
+### ReactJS
+
+### NextJS
+
+### TailwindCSS
+
+- Tailwindcss-animate
+
+```sh
+npm install tailwindcss-animate --save
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```js
+import animate from "tailwindcss-animate";
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Tailwind-typography
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+npm install @tailwindcss/typography --save
+```
 
-## Learn More
+```js
+import typography from "@tailwindcss/typography";
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Add into plugins
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```js
+...
+plugins: [animate, typography]
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Back
 
-## Deploy on Vercel
+### Auth.jsx
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[Back](#table-of-contents)<br>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Official site: [Auth.jsx](https://authjs.dev/getting-started/installation)
+
+### Installation
+
+```sh
+npm install next-auth@beta
+npx auth secret
+```
+
+### Create .auth.jsx file
+
+```sh
+touch auth.jsx
+```
+
+### Add following content
+
+```js
+import NextAuth from "next-auth";
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  providers: [],
+});
+```
+
+### Create app/api/auth/[...nextauth] folder and route.jsx file in the created folder
+
+```sh
+mkdir -p "app/api/auth/[...nextauth]"
+touch "app/api/auth/[...nextauth]/route.jsx"
+```
+
+### Add following contents
+
+```sh
+import { handlers } from "@/auth" // Referring to the auth.ts we just created
+export const { GET, POST } = handlers
+```
+
+### Authentication: [OAuth](https://authjs.dev/getting-started/authentication/oauth)
+
+Setup with [GitHub](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
+
+- Add GitHub Client ID into .env.local
+
+```sh
+AUTH_GITHUB_ID="[CLIENT ID]"
+```
+
+- Add GitHub Secret ID into .env.local
+
+```sh
+AUTH_GITHUB_SECRET="[SECRET ID]"
+```
+
+### Updating contents auth.jsx
+
+```js
+import NextAuth from "next-auth";
+import GitHub from "next-auth/providers/github";
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  providers: [GitHub],
+});
+```
+
+## Folder Structure
+
+[Back](#table-of-contents)<br>
+
+### Setup (root) folder
+
+```sh
+# Create root 'app/(root)' folder
+
+mkdir -p 'app/(root)'
+
+# Move root `page.jsx` into app/(root) folder
+
+mv 'app/page.jsx' 'app/(root)/'
+
+# Create root layout file into app/(root)
+
+touch 'app/(root)/layout.jsx'
+```
+
+### Setup components folder
+
+```sh
+# Create components folder
+
+mkdir -p 'app/components'
+
+# Create Navbar.jsx
+
+touch 'app/components/Navbar.jsx'
+```
+
+## Reference
+
+[Back](#table-of-contents)<br>
+
+JSMastery
+YC_Directory GitHub
